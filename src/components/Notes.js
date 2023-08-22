@@ -2,9 +2,12 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import NoteContext from "../context/notes/noteContext";
 import NotesItem from "./NotesItem";
 import { useNavigate } from "react-router-dom";
+import UserContext from "../context/users/userContext";
 
 function Notes(props) {
   const history =  useNavigate();
+  const userDataContext = useContext(UserContext);
+  const {userData, getUserData } = userDataContext;
   const context = useContext(NoteContext);
   const {showAlert} = props;
  
@@ -13,6 +16,7 @@ function Notes(props) {
     if(localStorage.getItem('token'))
     {
       getNotes();
+      getUserData();
     }
     else
     {
@@ -25,6 +29,7 @@ function Notes(props) {
 
   //Creating state for notes
   const [note, setNote] = useState({ id: "",etitle: "", edescription: "", etag: "" });
+  // const [user, setuser] = useState({ name: "", email: ""});
 
   //Updating the notes
   const updateNote = (currentNote) => {

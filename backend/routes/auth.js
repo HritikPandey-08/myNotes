@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const bcrypt = require('bcryptjs'); // Encrypting pass
+const bcrypt = require('bcryptjs'); // Encrypting pass //npm install bcryptjs
 const jwt = require('jsonwebtoken'); // token
 const User = require("../models/User");
 const fetchuser = require("../middleware/fetchuser")
 
 const JWT_SIGN = "signatureforthejwttoken";
 
-const { body, validationResult } = require("express-validator");
+const { body, validationResult } = require("express-validator"); //npm install express-validator
 
 //ROUTE 1 :- Create a user using POST "api/auth/createUser" .Doesn't require auth. No login required
 router.post(

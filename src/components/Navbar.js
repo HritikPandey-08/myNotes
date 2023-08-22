@@ -42,7 +42,7 @@ function Navbar() {
                 </Link>
               </li>
             </ul>
-            {localStorage.getItem('token')?<button className="btn btn-outline-primary" onClick={logout}>Logout</button>:<form className="d-flex"  role="search">
+            {localStorage.getItem('token')?<div style={{ color: 'white' }}><i className="fas fa-user fa-lg mx-2"></i><button className="btn btn-outline-primary" onClick={logout}>Logout</button></div>:<form className="d-flex"  role="search">
               <Link role="button" to="/login"  className="btn btn-outline-primary me-2">Login</Link>
               <Link role="button" to="/signup" className="btn btn-outline-primary mx-2">Sign Up</Link>
             </form>

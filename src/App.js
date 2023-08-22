@@ -8,6 +8,7 @@ import NoteState from "./context/notes/NoteState";
 import Alerts from "./components/Alerts";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
+import UserState from "./context/users/UserState";
 function App() {
   const[alert,setAlert] = useState(null);
 
@@ -21,7 +22,9 @@ function App() {
   }
   return (
     <>
+    <UserState>
       <NoteState>
+
         <Router>
           <Navbar />
           <Alerts alert={alert}/>
@@ -36,6 +39,7 @@ function App() {
           </div>
         </Router>
       </NoteState>
+      </UserState>
     </>
   );
 }

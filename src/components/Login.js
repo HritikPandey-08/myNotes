@@ -1,22 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import UserContext from "../context/users/userContext";
 
 const Login = (props) => {
   const history =  useNavigate();
+  const userDataContext = useContext(UserContext);
+  const {loginUser} = userDataContext;
   const [credentials,setCredentials] = useState({email:"",password:""})
     const handleSubmit = async (e)=>  {
         e.preventDefault();
-        const response = await fetch(`http://localhost:5000/api/auth/login`, {
-            method: "POST",// Method of fetch
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body : JSON.stringify({email:credentials.email,password:credentials.password})
-          });
-          const json = await response.json();
+           // const response = await fetch(`http://localhost:5000/api/auth/login`, {
+        //     method: "POST",// Method of fetch
+        //     headers: {
+        //       "Content-Type": "application/json",
+        //     },
+        //     body : JSON.stringify({email:credentials.email,password:credentials.password})
+        //   });
+        //   const json = await response.json();
+          const json = await loginUser(credentials.email,credentials.password)
           if(json.success)
           {
-            console.log(json.authToken)
+            //console.log(json.authToken)
             localStorage.setItem('token',json.authToken);
             history('/')
             props.showAlert("LoggedIn successfully","success");
